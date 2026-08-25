@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Create Job | AI Resume Screening</title>
+
+   <link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="create-job.css">
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         BACKGROUND
+         ===================================================== -->
+
+    <div class="background-glow glow-one"></div>
+
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <nav class="create-job-navbar">
+
+        <!-- BRAND -->
+
+        <a
+            href="/dashboard.html"
+            class="create-job-brand">
+
+            <div class="create-job-brand-icon">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="create-job-brand-name">
+                    AI Resume
+                </div>
+
+                <div class="create-job-brand-subtitle">
+                    Screening
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="create-job-nav-links">
+
+            <a href="/dashboard.html">
+                Dashboard
+            </a>
+
+            <a
+                href="/create-job.html"
+                class="active">
+                Create Job
+            </a>
+
+            <a href="/jobs.html">
+                My Jobs
+            </a>
+
+            <a href="/candidates.html">
+                Candidates
+            </a>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="create-job-nav-right">
+
+           
+
+
+            <a
+                href="/profile.html"
+                class="create-job-profile">
+
+                <div
+                    class="create-job-profile-avatar"
+                    id="navProfileAvatar">
+
+                    ?
+
+                </div>
+
+
+                <div class="create-job-profile-info">
+
+                    <span
+                        class="create-job-profile-name"
+                        id="navProfileName">
+
+                        Recruiter
+
+                    </span>
+
+                    <span
+                        class="create-job-profile-company"
+                        id="navCompanyName">
+
+                        Company
+
+                    </span>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN PAGE
+         ===================================================== -->
+
+    <main class="create-job-page">
+
+
+        <!-- BRAND HEADER -->
+
+        <div class="create-job-brand-header">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <h1>
+                AI Resume Screening
+            </h1>
+
+            <p>
+                Create and manage your recruitment jobs
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             JOB CARD
+             ================================================= -->
+
+        <div class="job-card">
+
+
+            <div class="job-header">
+
+                <span class="job-label">
+                    RECRUITER WORKSPACE
+                </span>
+
+
+                <h2>
+                    Create New Job
+                </h2>
+
+
+                <p>
+                    Add a job description to start screening candidates.
+                </p>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="createJobForm">
+
+
+                <!-- JOB TITLE -->
+
+                <div class="job-input-group">
+
+                    <label for="jobTitle">
+                        Job Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jobTitle"
+                        class="job-input"
+                        placeholder="e.g. Python Developer"
+                        required>
+
+                </div>
+
+
+
+                <!-- JOB DESCRIPTION -->
+
+                <div class="job-input-group">
+
+                    <label for="jobDescription">
+                        Job Description
+                    </label>
+
+
+                    <textarea
+                        id="jobDescription"
+                        class="job-textarea"
+                        placeholder="Enter the complete job description...
+
+Example:
+
+We are looking for a Python Developer with experience in Python, Django, SQL, Pandas and REST APIs.
+
+Responsibilities:
+- Develop Python applications
+- Build REST APIs
+- Work with databases
+
+Requirements:
+- Strong Python knowledge
+- Django experience
+- SQL
+- Git"
+                        required></textarea>
+
+
+                    <div class="job-help">
+
+                        Required skills will be automatically
+                        extracted from the job description.
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CREATE JOB BUTTON -->
+
+                <button
+                    type="submit"
+                    class="job-button"
+                    id="createJobButton">
+
+                    Create Job
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="jobMessage"
+                    class="job-message">
+                </div>
+
+
+            </form>
+
+
+
+            <!-- BACK -->
+
+            <div class="job-footer">
+
+                <a href="/screening.html">
+
+                    ← Back to Screening
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SECURITY -->
+
+        <div class="security-note">
+
+            🔒 Recruiter-only workspace
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="create-job.js"></script>
+
+</body>
+
+</html>

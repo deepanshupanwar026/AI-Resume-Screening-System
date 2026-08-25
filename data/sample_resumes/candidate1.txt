@@ -1,0 +1,23 @@
+Aarav Sharma
+
+Email: aarav@example.com
+Phone: 9000000001
+
+EDUCATION
+B.Tech in Computer Science
+
+SKILLS
+Python, SQL, Pandas, NumPy, Machine Learning,
+Scikit-learn, Django, Git
+
+EXPERIENCE
+Fresher
+
+PROJECTS
+House Price Prediction using Python and Machine Learning.
+Developed a machine learning project using Pandas,
+Scikit-learn and regression algorithms.
+
+CERTIFICATIONS
+Python Programming
+Machine Learning Fundamentals

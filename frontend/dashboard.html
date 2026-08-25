@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Recruiter Dashboard | AI Resume Screening</title>
+
+    <link
+        rel="stylesheet"
+        href="dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- ================================================= -->
+    <!-- TOP NAVIGATION -->
+    <!-- ================================================= -->
+
+    <header class="top-nav">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                ✦
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    AI Resume
+                </strong>
+
+                <span>
+                    Screening
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="main-nav">
+
+            <a
+                href="dashboard.html"
+                class="active"
+            >
+                Dashboard
+            </a>
+
+            <a href="create-job.html">
+                Create Job
+            </a>
+
+           <a href="/jobs.html">
+    My Jobs
+</a>
+
+<a href="/candidates.html">
+    Candidates
+</a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+
+<div
+    class="nav-profile"
+    onclick="window.location.href='/profile.html'"
+    style="cursor: pointer;"
+    title="Open Profile"
+>
+
+    <img
+        id="navProfilePhoto"
+        src=""
+        alt="Recruiter profile"
+    >
+
+    <div>
+
+        <strong id="navRecruiterName">
+            Recruiter
+        </strong>
+
+        <span id="navCompanyName">
+            Company
+        </span>
+
+     </div>
+
+     </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="dashboard-content">
+
+
+        <!-- ================================================= -->
+        <!-- WELCOME / PROFILE HERO -->
+        <!-- ================================================= -->
+
+        <section class="profile-hero">
+
+            <div class="hero-left">
+
+                <div class="completion-badge">
+                    ● RECRUITER DASHBOARD
+                </div>
+
+
+                <h1>
+                    Welcome back,
+                    <span id="heroName">
+                        Recruiter
+                    </span>
+                </h1>
+
+
+                <p class="hero-description">
+                    Manage your recruitment jobs,
+                    screen candidates and find the
+                    right talent for your organization.
+                </p>
+
+
+                <div class="hero-details">
+
+                    <div class="detail-item">
+
+                        <span class="detail-icon">
+                            ✉
+                        </span>
+
+                        <span
+                            id="heroEmail"
+                        >
+                            recruiter@email.com
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span class="detail-icon">
+                            ◈
+                        </span>
+
+                        <span
+                            id="heroCompany"
+                        >
+                            Company Name
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+           <div
+    class="hero-right"
+    onclick="window.location.href='/profile.html'"
+    style="cursor: pointer;"
+    title="Open Profile"
+>
+
+    <div class="profile-photo-wrapper">
+
+        <div class="photo-ring">
+
+            <img
+                id="heroProfilePhoto"
+                src=""
+                alt="Recruiter profile photo"
+            >
+
+        </div>
+
+        <span class="online-dot"></span>
+
+    </div>
+
+    <span class="profile-label">
+        RECRUITER
+    </span>
+
+    <h2 id="heroProfileName">
+        Recruiter Name
+    </h2>
+
+    <p id="heroProfileCompany">
+        Company Name
+    </p>
+
+</div>
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- STATISTICS -->
+        <!-- ================================================= -->
+
+        <section class="section-block">
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        OVERVIEW
+                    </span>
+
+                    <h2>
+                        Recruitment Statistics
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        💼
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Total Jobs
+                        </span>
+
+                        <strong id="totalJobs">
+                            0
+                        </strong>
+
+                        <small>
+                            Jobs created
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ⚡
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Active Jobs
+                        </span>
+
+                        <strong id="activeJobs">
+                            0
+                        </strong>
+
+                        <small>
+                            Currently hiring
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon cyan">
+                        👥
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Candidates
+                        </span>
+
+                        <strong id="totalCandidates">
+                            0
+                        </strong>
+
+                        <small>
+                            Applications received
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span>
+                            Shortlisted
+                        </span>
+
+                        <strong id="shortlistedCandidates">
+                            0
+                        </strong>
+
+                        <small>
+                            Recommended candidates
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- QUICK ACTIONS -->
+        <!-- ================================================= -->
+
+        <section class="quick-actions">
+
+            <div>
+
+                <span class="small-label">
+                    RECRUITMENT WORKSPACE
+                </span>
+
+                <h2>
+                    Ready to find your next candidate?
+                </h2>
+
+                <p>
+                    Create a job and start screening
+                    candidate resumes using AI-powered
+                    matching.
+                </p>
+
+            </div>
+
+
+            <a
+                href="create-job.html"
+                class="primary-button"
+            >
+                Create New Job
+                <span>→</span>
+            </a>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- MY JOBS -->
+        <!-- ================================================= -->
+
+        <section class="section-block jobs-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <span class="small-label">
+                        RECRUITMENT
+                    </span>
+
+                    <h2>
+                        My Jobs
+                    </h2>
+
+                    <p>
+                        Jobs created by your organization
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="create-job.html"
+                    class="outline-button"
+                >
+                    + Create Job
+                </a>
+
+            </div>
+
+
+            <div
+                id="jobsContainer"
+                class="jobs-grid"
+            >
+
+                <div class="loading-card">
+
+                    <div class="loading-spinner"></div>
+
+                    <p>
+                        Loading your jobs...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
+        <footer class="dashboard-footer">
+
+            <span>
+                AI Resume Screening System
+            </span>
+
+            <span>
+                Recruiter Workspace
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

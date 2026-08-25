@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Candidates | AI Resume Screening</title>
+
+    <link
+        rel="stylesheet"
+        href="/dashboard.css"
+    >
+
+    <style>
+
+        
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+    <!-- NAVBAR -->
+
+    <header class="top-nav">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                ✦
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    AI Resume
+                </strong>
+
+                <span>
+                    Screening
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="main-nav">
+
+            <a href="/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="/create-job.html">
+                Create Job
+            </a>
+
+            <a href="/jobs.html">
+                My Jobs
+            </a>
+
+            <a
+                href="/candidates.html"
+                class="active"
+            >
+                Candidates
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+
+            <div class="nav-profile">
+
+                <img
+                    id="navProfilePhoto"
+                    src=""
+                    alt="Recruiter"
+                >
+
+                <div>
+
+                    <strong
+                        id="navRecruiterName"
+                    >
+                        Recruiter
+                    </strong>
+
+                    <span
+                        id="navCompanyName"
+                    >
+                        Company
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="candidates-page">
+
+        <section class="page-heading">
+
+            <span class="page-label">
+                RECRUITMENT
+            </span>
+
+            <h1>
+                Candidates
+            </h1>
+
+            <p>
+                View candidates according
+                to the job they were screened for.
+            </p>
+
+        </section>
+
+
+        <!-- JOB SELECTOR -->
+
+        <section class="job-selector-card">
+
+            <label for="jobSelector">
+                Select Job
+            </label>
+
+            <select
+                id="jobSelector"
+            >
+
+                <option value="">
+                    Loading jobs...
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- SELECTED JOB -->
+
+        <section
+            id="selectedJob"
+            class="selected-job"
+            style="display:none;"
+        >
+
+            <h2 id="selectedJobTitle">
+                Candidates
+            </h2>
+
+            <p id="selectedJobDescription">
+            </p>
+
+        </section>
+
+
+        <!-- CANDIDATES -->
+
+        <section
+            id="candidatesContainer"
+            class="candidate-grid"
+        >
+
+            <div class="loading">
+                Loading candidates...
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/candidates.js"></script>
+
+</body>
+
+</html>

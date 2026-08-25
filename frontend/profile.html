@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Recruiter Profile
+    </title>
+
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div>
+                Recruiter Workspace
+
+                <small>
+                    AI Resume Screening
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button
+                class="nav-btn"
+                onclick="
+                    window.location.href =
+                    '/dashboard.html'
+                "
+            >
+                Dashboard
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="
+                    window.location.href =
+                    '/create-job.html'
+                "
+            >
+                Create Job
+            </button>
+
+
+           
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <header class="page-header">
+
+        <span class="page-label">
+            RECRUITER ACCOUNT
+        </span>
+
+        <h1>
+            My Profile
+        </h1>
+
+        <p>
+            Manage your recruiter information,
+            company details and profile photo.
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         PROFILE CONTENT
+    ====================================================== -->
+
+    <main class="profile-grid">
+
+
+        <!-- =================================================
+             LEFT SIDEBAR
+        ================================================== -->
+
+        <div class="profile-sidebar">
+
+
+            <!-- =============================================
+                 PROFILE PHOTO CARD
+            ============================================== -->
+
+            <section class="card photo-card">
+
+
+                <div class="avatar-wrapper">
+
+
+                    <img
+                        id="profileAvatar"
+                        class="profile-avatar"
+                        src=""
+                        alt="Profile Photo"
+                        style="display:none;"
+                    >
+
+
+                    <div
+                        id="avatarPlaceholder"
+                        class="
+                            profile-avatar
+                            avatar-placeholder
+                        "
+                    >
+                        ?
+                    </div>
+
+
+                    <label
+                        for="profilePhoto"
+                        class="photo-edit"
+                        title="Change profile photo"
+                    >
+                        ✎
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="profilePhoto"
+                        accept="
+                            image/png,
+                            image/jpeg,
+                            image/jpg,
+                            image/webp
+                        "
+                    >
+
+                </div>
+
+
+                <h2 id="photoName">
+                    Recruiter
+                </h2>
+
+
+                <p id="photoCompany">
+                    Company
+                </p>
+
+
+                <p class="photo-hint">
+                    JPG, PNG or WEBP
+                    <br>
+                    Maximum recommended size: 5MB
+                </p>
+
+
+            </section>
+
+
+            <!-- =============================================
+                 ACCOUNT SETTINGS
+            ============================================== -->
+
+            <section class="card account-settings">
+
+
+                <div class="account-settings-header">
+
+                    <span class="account-label">
+                        ACCOUNT SETTINGS
+                    </span>
+
+                    <h2>
+                        Account
+                    </h2>
+
+                    <p>
+                        Manage your recruiter account.
+                    </p>
+
+                </div>
+
+
+                <div class="account-divider"></div>
+
+
+                <div class="account-actions">
+
+
+                    <!-- LOGOUT -->
+
+                    <button
+                        type="button"
+                        id="logoutButton"
+                        class="logout-button"
+                    >
+                        Logout
+                    </button>
+
+
+                    <!-- DELETE ACCOUNT -->
+
+                    <button
+                        type="button"
+                        id="deleteAccountButton"
+                        class="delete-account-button"
+                    >
+                        Delete Account
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================================
+             PERSONAL INFORMATION
+        ================================================== -->
+
+        <section class="card form-card">
+
+
+            <div class="form-header">
+
+                <h2>
+                    Personal Information
+                </h2>
+
+                <p>
+                    Update the information displayed
+                    on your recruiter dashboard.
+                </p>
+
+            </div>
+
+
+            <form id="profileForm">
+
+
+                <!-- =========================================
+                     NAME
+                ========================================== -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================================
+                     EMAIL
+                ========================================== -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        readonly
+                    >
+
+                    <span class="form-help">
+                        Email is linked to your recruiter account
+                        and cannot be changed here.
+                    </span>
+
+                </div>
+
+
+                <!-- =========================================
+                     COMPANY
+                ========================================== -->
+
+                <div class="form-group">
+
+                    <label for="companyName">
+                        Company Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="companyName"
+                        name="company_name"
+                        placeholder="Enter your company name"
+                    >
+
+                </div>
+
+
+                <!-- =========================================
+                     FOOTER
+                ========================================== -->
+
+                <div class="form-footer">
+
+
+                    <div
+                        id="profileMessage"
+                        class="message"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                        id="saveProfileButton"
+                    >
+                        Save Changes
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+
+
+<script src="/profile.js"></script>
+
+
+</body>
+
+</html>

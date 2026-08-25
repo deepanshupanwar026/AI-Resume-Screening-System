@@ -1,0 +1,21 @@
+Rohan Verma
+
+Email: rohan@example.com
+Phone: 9000000002
+
+EDUCATION
+B.Tech in Computer Science
+
+SKILLS
+Java, Spring Boot, SQL, React, HTML, CSS, Git
+
+EXPERIENCE
+1 year experience as Java Developer
+
+PROJECTS
+Developed web applications using Java,
+Spring Boot, React and SQL.
+
+CERTIFICATIONS
+Java Programming
+Spring Boot Development

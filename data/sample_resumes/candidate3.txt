@@ -1,0 +1,21 @@
+Priya Singh
+
+Email: priya@example.com
+
+EDUCATION
+B.Tech in Computer Science
+
+SKILLS
+Python, TensorFlow, Deep Learning, NumPy,
+Pandas, Machine Learning
+
+EXPERIENCE
+Fresher
+
+PROJECTS
+Developed a deep learning image classification
+project using Python, TensorFlow and NumPy.
+
+CERTIFICATIONS
+Deep Learning
+Python Programming

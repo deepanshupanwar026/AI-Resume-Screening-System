@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Jobs | AI Resume Screening</title>
+
+   
+<link rel="stylesheet" href="/jobs.css">
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+ <!-- NAVBAR -->
+
+<header class="top-nav">
+
+    <!-- BRAND -->
+
+    <a href="/dashboard.html" class="brand">
+
+        <div class="brand-logo">
+            ✦
+        </div>
+
+        <div class="brand-text">
+            <strong>AI Resume</strong>
+            <span>Screening</span>
+        </div>
+
+    </a>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="main-nav">
+
+        <a href="/dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="/create-job.html">
+            Create Job
+        </a>
+
+        <a
+            href="/jobs.html"
+            class="active"
+        >
+            My Jobs
+        </a>
+
+        <a href="/candidates.html">
+            Candidates
+        </a>
+
+    </nav>
+
+
+    <!-- PROFILE -->
+
+    <div class="nav-actions">
+
+        <a
+            href="/profile.html"
+            class="nav-profile"
+            id="navProfile"
+        >
+
+            <div class="nav-avatar">
+
+                <img
+                    id="navProfilePhoto"
+                    src=""
+                    alt="Recruiter"
+                >
+
+                <span id="navProfileInitial">
+                    ?
+                </span>
+
+            </div>
+
+            <div class="nav-profile-info">
+
+                <strong id="navRecruiterName">
+                    Recruiter
+                </strong>
+
+                <span id="navCompanyName">
+                    Company
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+    <!-- CONTENT -->
+
+    <main class="jobs-page">
+
+        <section class="page-heading">
+
+            <span class="page-label">
+                RECRUITMENT
+            </span>
+
+            <h1>
+                My Jobs
+            </h1>
+
+            <p>
+                Manage your recruitment jobs
+                and view screened candidates.
+            </p>
+
+        </section>
+
+
+        <div class="jobs-toolbar">
+
+            <h2>
+                Jobs created by you
+            </h2>
+
+            <a
+                href="/create-job.html"
+                class="create-job-link"
+            >
+                + Create Job
+            </a>
+
+        </div>
+
+
+        <section
+            id="jobsContainer"
+            class="jobs-grid"
+        >
+
+            <div class="loading">
+                Loading jobs...
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/jobs.js"></script>
+
+</body>
+
+</html>

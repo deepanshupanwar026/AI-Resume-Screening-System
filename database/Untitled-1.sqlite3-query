@@ -1,0 +1,9 @@
+-- database: ./recruitment.db
+
+SELECT * FROM recruiters;
+PRAGMA table_info(jobs);
+ALTER TABLE jobs
+RENAME COLUMN job_title TO title;
+ALTER TABLE jobs
+RENAME COLUMN job_description TO description;
+PRAGMA table_info(jobs);

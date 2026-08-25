@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Screen Candidates | AI Resume Screening</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="screening-navbar">
+
+        <div class="nav-brand">
+            <div class="brand-icon">✦</div>
+
+            <div>
+                <div class="brand-name">AI Resume</div>
+                <div class="brand-subtitle">Screening</div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="/create-job.html">
+                Create Job
+            </a>
+
+            <a href="/jobs.html">
+                My Jobs
+            </a>
+
+            <a href="/candidates.html">
+                Candidates
+            </a>
+
+        </div>
+
+        <div class="nav-profile">
+
+           
+
+            <a
+                href="/profile.html"
+                class="profile-link">
+
+                <div
+                    class="profile-avatar"
+                    id="navProfileAvatar">
+                    ?
+                </div>
+
+                <div class="profile-info">
+                    <strong id="navProfileName">
+                        Recruiter
+                    </strong>
+
+                    <span id="navCompanyName">
+                        Company
+                    </span>
+                </div>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>AI Resume Screening System</h1>
+
+    <p>
+        Screen candidates for the selected job
+        using AI-powered resume matching.
+    </p>
+
+
+    <!-- ========================================= -->
+    <!-- SELECTED JOB -->
+    <!-- ========================================= -->
+
+    <div id="jobInformation">
+
+        <h2 id="jobTitle">
+            Loading Job...
+        </h2>
+
+        <p id="jobDescription">
+            Loading job description...
+        </p>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- UPLOAD RESUMES -->
+    <!-- ========================================= -->
+
+    <h2>
+        Upload Candidate Resumes
+    </h2>
+
+
+    <input
+        type="file"
+        id="resumeFiles"
+        accept=".pdf"
+        multiple
+    >
+
+
+    <br>
+    <br>
+
+
+    <!-- ========================================= -->
+    <!-- SCREEN BUTTON -->
+    <!-- ========================================= -->
+
+    <button
+        id="screenButton"
+    >
+        Screen Resumes
+    </button>
+
+
+    <!-- ========================================= -->
+    <!-- RESULTS -->
+    <!-- ========================================= -->
+
+    <div
+        id="results"
+        class="results-container"
+    ></div>
+
+
+</div>
+
+
+<script src="screening.js"></script>
+
+</body>
+
+</html>

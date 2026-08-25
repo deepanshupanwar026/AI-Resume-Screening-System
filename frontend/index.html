@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Screening System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- ========================================= -->
+        <!-- HEADER -->
+        <!-- ========================================= -->
+
+        <h1>
+            AI Resume Screening System
+        </h1>
+
+        <p>
+            Screen and rank candidates based on their
+            resumes and job requirements.
+        </p>
+
+
+        <!-- ========================================= -->
+        <!-- JOB DESCRIPTION -->
+        <!-- ========================================= -->
+
+        <h2>
+            Job Description
+        </h2>
+
+        <textarea
+            id="jobDescription"
+            placeholder="Paste the Job Description here..."
+        ></textarea>
+
+
+        <!-- ========================================= -->
+        <!-- RESUME UPLOAD -->
+        <!-- ========================================= -->
+
+        <h2>
+            Upload Resumes
+        </h2>
+
+        <input
+            type="file"
+            id="resumeFiles"
+            accept=".pdf"
+            multiple
+        >
+
+        <br>
+        <br>
+
+
+        <!-- ========================================= -->
+        <!-- SCREEN BUTTON -->
+        <!-- ========================================= -->
+
+        <button id="screenButton">
+            Screen Resumes
+        </button>
+
+
+        <!-- ========================================= -->
+        <!-- SCORE CARDS -->
+        <!-- ========================================= -->
+
+        <div class="score-cards">
+
+
+            <!-- TOTAL CANDIDATES -->
+
+            <div class="score-card">
+
+                <div class="score-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Candidates
+                    </p>
+
+                    <h3 id="totalCandidates">
+                        0
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOP SIMILARITY -->
+
+            <div class="score-card">
+
+                <div class="score-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <p>
+                        Top Similarity
+                    </p>
+
+                    <h3 id="topSimilarity">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOP SKILL MATCH -->
+
+            <div class="score-card">
+
+                <div class="score-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <p>
+                        Top Skill Match
+                    </p>
+
+                    <h3 id="topSkillMatch">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOP OVERALL -->
+
+            <div class="score-card">
+
+                <div class="score-icon">
+                    🏆
+                </div>
+
+                <div>
+
+                    <p>
+                        Top Overall Score
+                    </p>
+
+                    <h3 id="topOverall">
+                        0%
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- CANDIDATE RESULTS -->
+        <!-- ========================================= -->
+
+        <div id="results"
+             class="results-container">
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ============================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
