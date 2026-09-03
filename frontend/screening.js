@@ -889,6 +889,24 @@ function displayResults(results) {
                     </div>
 
                 </div>
+                 <!-- =========================================
+                     AI ANALYSIS
+                ========================================== -->
+
+                <div class="ai-analysis-section">
+
+                    <div class="ai-analysis-header">
+                        <h4>🤖 AI Analysis</h4>
+                    </div>
+
+                    <div class="ai-analysis-content">
+                        ${escapeHTML(
+                            candidate.ai_analysis ||
+                            "AI analysis not available."
+                        )}
+                    </div>
+
+                </div>
 
 
                 <!-- =========================================

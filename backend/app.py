@@ -37,8 +37,7 @@ sys.path.insert(0, PROJECT_FOLDER)
 from src.resume_parser import extract_text_from_pdf
 from src.text_preprocessing import preprocess_text
 from src.skill_extractor import extract_skills, compare_skills
-
-
+from src.rag_pipeline import generate_rag_analysis
 # =========================================================
 # FOLDERS
 # =========================================================
@@ -223,6 +222,11 @@ class Candidate(db.Model):
         default=0
     )
 
+    ai_analysis = db.Column(
+    db.Text,
+    nullable=True
+    )
+
     rank = db.Column(
         db.Integer,
         default=0
@@ -328,6 +332,7 @@ def candidate_to_dict(candidate):
         "skill_match_score": candidate.skill_match_score or 0,
         "similarity_score": candidate.similarity_score or 0,
         "overall_score": candidate.overall_score or 0,
+        "ai_analysis": candidate.ai_analysis,
         "rank": candidate.rank or 0,
         "recommendation": candidate.recommendation or "Low Match",
         "text_length": candidate.text_length or 0,
@@ -1163,6 +1168,10 @@ def screen_resumes():
         clean_text = preprocess_text(
             resume_text
         )
+        rag_analysis = generate_rag_analysis(
+           resume_text,
+           job_description
+        )
 
         candidate_texts.append(
             clean_text
@@ -1183,6 +1192,7 @@ def screen_resumes():
 
         results.append({
             "candidate": original_filename,
+            "ai_analysis": rag_analysis,
             "skills": candidate_skills,
             "matched_skills": matched_skills,
             "missing_skills": missing_skills,
@@ -1294,6 +1304,7 @@ def screen_resumes():
             skill_match_score=result["skill_match_score"],
             similarity_score=result["similarity_score"],
             overall_score=result["overall_score"],
+            ai_analysis=result["ai_analysis"],
             rank=result["rank"],
             recommendation=result["recommendation"]
         )
@@ -1431,6 +1442,17 @@ def health():
 with app.app_context():
     db.create_all()
 
+    columns = db.session.execute(
+        db.text("PRAGMA table_info(candidates)")
+    ).fetchall()
+
+    column_names = {column[1] for column in columns}
+
+    if "ai_analysis" not in column_names:
+        db.session.execute(
+            db.text("ALTER TABLE candidates ADD COLUMN ai_analysis TEXT")
+        )
+        db.session.commit()
 
 # =========================================================
 # START SERVER
