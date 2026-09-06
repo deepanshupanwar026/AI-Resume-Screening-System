@@ -37,9 +37,10 @@ sys.path.insert(0, PROJECT_FOLDER)
 from src.resume_parser import extract_text_from_pdf
 from src.text_preprocessing import preprocess_text
 from src.skill_extractor import extract_skills, compare_skills
-
-
-# =========================================================
+from src.rag_pipeline import (
+    generate_rag_analysis,
+    generate_interview_questions
+)# =========================================================
 # FOLDERS
 # =========================================================
 
@@ -223,6 +224,11 @@ class Candidate(db.Model):
         default=0
     )
 
+    ai_analysis = db.Column(
+    db.Text,
+    nullable=True
+    )
+
     rank = db.Column(
         db.Integer,
         default=0
@@ -328,6 +334,7 @@ def candidate_to_dict(candidate):
         "skill_match_score": candidate.skill_match_score or 0,
         "similarity_score": candidate.similarity_score or 0,
         "overall_score": candidate.overall_score or 0,
+        "ai_analysis": candidate.ai_analysis,
         "rank": candidate.rank or 0,
         "recommendation": candidate.recommendation or "Low Match",
         "text_length": candidate.text_length or 0,
@@ -974,7 +981,6 @@ def delete_job(job_id):
         return jsonify({
 
             "success": True,
-
             "message":
                 "Job deleted successfully."
 
@@ -1163,6 +1169,10 @@ def screen_resumes():
         clean_text = preprocess_text(
             resume_text
         )
+        rag_analysis = generate_rag_analysis(
+           resume_text,
+           job_description
+        )
 
         candidate_texts.append(
             clean_text
@@ -1183,6 +1193,7 @@ def screen_resumes():
 
         results.append({
             "candidate": original_filename,
+            "ai_analysis": rag_analysis,
             "skills": candidate_skills,
             "matched_skills": matched_skills,
             "missing_skills": missing_skills,
@@ -1276,7 +1287,7 @@ def screen_resumes():
     # =====================================================
     # SAVE SCREENING RESULTS
     # =====================================================
-
+    saved_candidates = []
     for result in results:
         candidate = Candidate(
             job_id=job.id,
@@ -1294,14 +1305,24 @@ def screen_resumes():
             skill_match_score=result["skill_match_score"],
             similarity_score=result["similarity_score"],
             overall_score=result["overall_score"],
+            ai_analysis=result["ai_analysis"],
             rank=result["rank"],
             recommendation=result["recommendation"]
         )
 
         db.session.add(candidate)
 
-    db.session.commit()
+        saved_candidates.append(
+            (result, candidate)
+        )
 
+    # Generate database IDs
+    db.session.flush()
+
+    # Add database ID to API results
+    for result, candidate in saved_candidates:
+        result["id"] = candidate.id
+    db.session.commit()
     return jsonify({
         "success": True,
         "message": "Resume screening successful!",
@@ -1311,8 +1332,6 @@ def screen_resumes():
         "resume_count": len(results),
         "results": results
     })
-
-
 # =========================================================
 # GET CANDIDATES FOR A JOB
 # =========================================================
@@ -1411,7 +1430,83 @@ def get_candidate(candidate_id):
         "candidate": candidate_to_dict(candidate)
     })
 
+# =========================================================
+# GENERATE INTERVIEW QUESTIONS
+# =========================================================
 
+@app.route(
+    "/candidates/<int:candidate_id>/interview-questions",
+    methods=["POST"]
+)
+def generate_candidate_interview_questions(candidate_id):
+
+    recruiter = recruiter_from_session()
+
+    if not recruiter:
+        return jsonify({
+            "success": False,
+            "message": "Please login first."
+        }), 401
+
+    candidate = db.session.get(
+        Candidate,
+        candidate_id
+    )
+
+    if not candidate:
+        return jsonify({
+            "success": False,
+            "message": "Candidate not found."
+        }), 404
+
+    if (
+        not candidate.job
+        or candidate.job.recruiter_id != recruiter.id
+    ):
+        return jsonify({
+            "success": False,
+            "message": "You do not have access to this candidate."
+        }), 403
+
+    if not candidate.resume_path:
+        return jsonify({
+            "success": False,
+            "message": "Resume file not found."
+        }), 404
+
+    try:
+        resume_text = extract_text_from_pdf(
+            candidate.resume_path
+        )
+
+        if not resume_text.strip():
+            return jsonify({
+                "success": False,
+                "message": "Could not extract text from the resume."
+            }), 400
+
+        job_description = candidate.job.description
+
+        interview_questions = generate_interview_questions(
+            resume_text,
+            job_description
+        )
+
+        return jsonify({
+            "success": True,
+            "candidate_id": candidate.id,
+            "questions": interview_questions
+        })
+
+    except Exception as error:
+        app.logger.exception(
+            "Interview question generation failed"
+        )
+
+        return jsonify({
+            "success": False,
+            "message": "Unable to generate interview questions."
+        }), 500
 # =========================================================
 # HEALTH CHECK
 # =========================================================
@@ -1431,6 +1526,17 @@ def health():
 with app.app_context():
     db.create_all()
 
+    columns = db.session.execute(
+        db.text("PRAGMA table_info(candidates)")
+    ).fetchall()
+
+    column_names = {column[1] for column in columns}
+
+    if "ai_analysis" not in column_names:
+        db.session.execute(
+            db.text("ALTER TABLE candidates ADD COLUMN ai_analysis TEXT")
+        )
+        db.session.commit()
 
 # =========================================================
 # START SERVER

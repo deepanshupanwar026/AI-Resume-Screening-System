@@ -34,7 +34,19 @@ const resumeFiles =
     document.getElementById(
         "resumeFiles"
     );
+const fileCount =
+    document.getElementById("fileCount");
 
+resumeFiles.addEventListener("change", function () {
+
+    const count = resumeFiles.files.length;
+
+    fileCount.textContent =
+        count === 0
+            ? "No resumes selected"
+            : `✓ ${count} resume${count > 1 ? "s" : ""} selected`;
+
+});
 
 const screenButton =
     document.getElementById(
@@ -257,7 +269,6 @@ screenButton.addEventListener(
 
             }
 
-
             // -------------------------------------
             // DISPLAY RESULTS
             // -------------------------------------
@@ -309,6 +320,42 @@ screenButton.addEventListener(
 
     }
 );
+function formatAIAnalysis(text) {
+
+    if (!text) {
+        return "<p>AI analysis not available.</p>";
+    }
+
+    let safeText = escapeHTML(text);
+
+    safeText = safeText
+        .replace(
+            /^### (.*)$/gm,
+            "<h5>$1</h5>"
+        )
+
+        .replace(
+            /^\* (.*)$/gm,
+            "<li>$1</li>"
+        )
+
+        .replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        )
+
+        .replace(
+            /(<li>.*<\/li>)/gs,
+            "<ul>$1</ul>"
+        )
+
+        .replace(
+            /\n/g,
+            "<br>"
+        );
+
+    return safeText;
+}
 
 
 // =========================================================
@@ -320,6 +367,16 @@ screenButton.addEventListener(
 // =========================================================
 
 function displayResults(results) {
+
+    console.log(
+        "FULL RESULTS:",
+        results
+    );
+
+    console.log(
+        "FIRST CANDIDATE:",
+        JSON.stringify(results[0], null, 2)
+    );
 
     resultsContainer.innerHTML = "";
 
@@ -384,11 +441,6 @@ function displayResults(results) {
 
         </div>
 
-
-        <div class="results-count">
-            ${results.length}
-            Candidate${results.length === 1 ? "" : "s"}
-        </div>
 
     `;
 
@@ -607,13 +659,9 @@ function displayResults(results) {
 
 
                         <div>
-
-                            <div class="candidate-rank">
-
-                                RANK #
-                                ${candidate.rank || index + 1}
-
-                            </div>
+                                <span class="candidate-rank">
+                                    Rank #${candidate.rank || index + 1}
+                                </span>
 
 
                             <h3>
@@ -889,8 +937,54 @@ function displayResults(results) {
                     </div>
 
                 </div>
+                 <!-- =========================================
+                     AI ANALYSIS
+                ========================================== -->
 
+                <div class="ai-analysis-section">
 
+                    <div class="ai-analysis-header">
+                        <h4> AI Analysis</h4>
+                    </div>
+
+                    <div class="ai-analysis-content">
+                       ${formatAIAnalysis(candidate.ai_analysis)}
+                    </div>
+
+                </div>
+    <!-- =========================================
+     INTERVIEW QUESTIONS
+========================================== -->
+
+<div class="interview-questions-section">
+
+    <div class="interview-questions-header">
+        <div>
+            <h4> Interview Preparation</h4>
+            <span>Generate questions based on this candidate</span>
+        </div>
+
+<button
+    type="button"
+    class="generate-questions-btn"
+    onclick="generateInterviewQuestions(${candidate.id}, this)"
+>
+    <span class="button-label">
+        Generate Interview Questions
+    </span>
+</button>
+    </div>
+
+    <div
+        class="interview-questions-content"
+        id="interview-questions-${candidate.id}"
+    >
+        <p class="interview-placeholder">
+            Click the button to generate personalized interview questions.
+        </p>
+    </div>
+
+</div>
                 <!-- =========================================
                      FOOTER
                 ========================================== -->
@@ -927,7 +1021,217 @@ function displayResults(results) {
     );
 
 }
+// =========================================================
+// GENERATE INTERVIEW QUESTIONS
+// =========================================================
 
+async function generateInterviewQuestions(
+    candidateId,
+    button
+) {
+
+    console.log(
+        "Generating interview questions for candidate:",
+        candidateId
+    );
+
+    const questionsContainer =
+        document.getElementById(
+            `interview-questions-${candidateId}`
+        );
+
+    if (!questionsContainer) {
+        console.error(
+            "Interview questions container not found."
+        );
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Generating Questions...";
+
+    questionsContainer.innerHTML = `
+        <div class="interview-loading">
+            <p>
+                🤖 Gemini is preparing personalized interview questions...
+            </p>
+        </div>
+    `;
+
+    try {
+
+        const response = await fetch(
+            `/candidates/${candidateId}/interview-questions`,
+            {
+                method: "POST"
+            }
+        );
+
+        const responseText =
+            await response.text();
+
+        let data;
+
+        try {
+
+            data = JSON.parse(responseText);
+
+        } catch (parseError) {
+
+            console.error(
+                "Server returned non-JSON response:",
+                responseText
+            );
+
+            throw new Error(
+                `Server returned ${response.status} instead of JSON.`
+            );
+        }
+
+        if (response.status === 401) {
+
+            window.location.href =
+                "/login.html";
+
+            return;
+        }
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.message ||
+                "Unable to generate interview questions."
+            );
+        }
+
+        questionsContainer.innerHTML =
+            formatInterviewQuestions(
+                data.questions
+            );
+
+        button.textContent =
+            "Regenerate Questions";
+
+    } catch (error) {
+
+        console.error(
+            "Interview question generation failed:",
+            error
+        );
+
+        questionsContainer.innerHTML = `
+            <div class="error-message">
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+            </div>
+        `;
+
+        button.textContent =
+            "Generate Interview Questions";
+
+    } finally {
+
+        button.disabled = false;
+
+    }
+}
+
+
+// =========================================================
+// FORMAT INTERVIEW QUESTIONS
+// =========================================================
+
+function formatInterviewQuestions(text) {
+
+    if (!text) {
+
+        return `
+            <p>
+                No interview questions were generated.
+            </p>
+        `;
+
+    }
+
+    const safeText =
+        escapeHTML(text);
+
+    const lines =
+        safeText.split("\n");
+
+    let html = "";
+
+    let questionNumber = 0;
+
+    lines.forEach(function(line) {
+
+        const trimmed =
+            line.trim();
+
+        if (!trimmed) {
+            return;
+        }
+
+        // Section headings
+        if (
+            trimmed.startsWith("**") &&
+            trimmed.endsWith("**")
+        ) {
+
+            const heading =
+                trimmed.replace(
+                    /\*\*/g,
+                    ""
+                );
+
+            html += `
+                <h5>
+                    ${heading}
+                </h5>
+            `;
+
+            return;
+        }
+
+        // Numbered questions
+        const questionMatch =
+            trimmed.match(
+                /^\d+\.\s*(.*)$/
+            );
+
+        if (questionMatch) {
+
+            questionNumber++;
+
+            html += `
+                <div class="interview-question">
+
+                    <span class="question-number">
+                        ${questionNumber}
+                    </span>
+
+                    <span class="question-text">
+                        ${questionMatch[1]}
+                    </span>
+
+                </div>
+            `;
+
+            return;
+        }
+
+        // Other text
+        html += `
+            <p>
+                ${trimmed}
+            </p>
+        `;
+
+    });
+
+    return html;
+}
 
 // =========================================================
 // ESCAPE HTML
@@ -972,3 +1276,72 @@ function escapeHTML(
 // =========================================================
 
 loadJob();
+
+// =========================================================
+// LOAD RECRUITER PROFILE
+// =========================================================
+
+async function loadRecruiterProfile() {
+
+    try {
+
+        const response = await fetch("/me");
+
+        const data = await response.json();
+
+        if (!data.authenticated) {
+            return;
+        }
+
+        const recruiter = data.recruiter;
+
+        const avatar =
+            document.getElementById("navProfileAvatar");
+
+        const name =
+            document.getElementById("navProfileName");
+
+        const company =
+            document.getElementById("navCompanyName");
+
+
+        if (name) {
+            name.textContent =
+                recruiter.name || "Recruiter";
+        }
+
+        if (company) {
+            company.textContent =
+                recruiter.company_name || "Company";
+        }
+
+
+        if (
+            avatar &&
+            recruiter.profile_photo
+        ) {
+
+            avatar.innerHTML = `
+                <img
+                    src="${recruiter.profile_photo}?v=${Date.now()}"
+                    alt="Profile"
+                >
+            `;
+
+            avatar.classList.add("has-photo");
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to load recruiter profile:",
+            error
+        );
+
+    }
+}
+
+
+loadRecruiterProfile();
