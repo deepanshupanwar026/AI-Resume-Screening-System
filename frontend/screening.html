@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Screen Candidates | AI Resume Screening</title>
+    <title>AI Resume Screening</title>
 
     <link
         rel="stylesheet"
@@ -22,17 +22,30 @@
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
     <nav class="screening-navbar">
 
         <div class="nav-brand">
-            <div class="brand-icon">✦</div>
+
+            <div class="brand-icon">
+                ✦
+            </div>
 
             <div>
-                <div class="brand-name">AI Resume</div>
-                <div class="brand-subtitle">Screening</div>
+                <div class="brand-name">
+                    AI Resume
+                </div>
+
+                <div class="brand-subtitle">
+                    Screening
+                </div>
             </div>
+
         </div>
+
 
         <div class="nav-links">
 
@@ -54,21 +67,23 @@
 
         </div>
 
-        <div class="nav-profile">
 
-           
+        <div class="nav-profile">
 
             <a
                 href="/profile.html"
-                class="profile-link">
+                class="profile-link"
+            >
 
                 <div
                     class="profile-avatar"
-                    id="navProfileAvatar">
+                    id="navProfileAvatar"
+                >
                     ?
                 </div>
 
                 <div class="profile-info">
+
                     <strong id="navProfileName">
                         Recruiter
                     </strong>
@@ -76,6 +91,7 @@
                     <span id="navCompanyName">
                         Company
                     </span>
+
                 </div>
 
             </a>
@@ -85,79 +101,339 @@
     </nav>
 
 
-    <div class="container">
+    <!-- =====================================================
+         MAIN CONTAINER
+    ====================================================== -->
 
-        <h1>AI Resume Screening System</h1>
-
-    <p>
-        Screen candidates for the selected job
-        using AI-powered resume matching.
-    </p>
+    <main class="screening-container">
 
 
-    <!-- ========================================= -->
-    <!-- SELECTED JOB -->
-    <!-- ========================================= -->
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-    <div id="jobInformation">
+        <section class="screening-hero">
 
-        <h2 id="jobTitle">
-            Loading Job...
-        </h2>
+            <div class="hero-title-row">
 
-        <p id="jobDescription">
-            Loading job description...
-        </p>
+                <h1>
+                    AI Resume Screening System
+                </h1>
 
-    </div>
+                <span class="ai-powered-badge">
+                    ✨ AI Powered
+                </span>
 
+            </div>
 
-    <!-- ========================================= -->
-    <!-- UPLOAD RESUMES -->
-    <!-- ========================================= -->
+            <p>
+                Screen candidates for the selected job
+                using AI-powered resume matching.
+            </p>
 
-    <h2>
-        Upload Candidate Resumes
-    </h2>
-
-
-    <input
-        type="file"
-        id="resumeFiles"
-        accept=".pdf"
-        multiple
-    >
+        </section>
 
 
-    <br>
-    <br>
+        <!-- =================================================
+             FEATURE STRIP
+        ================================================== -->
+
+        <section class="screening-features">
+
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    ✦
+                </div>
+
+                <div>
+                    <strong>
+                        AI Matching
+                    </strong>
+
+                    <span>
+                        Smart scoring
+                    </span>
+                </div>
+
+            </div>
 
 
-    <!-- ========================================= -->
-    <!-- SCREEN BUTTON -->
-    <!-- ========================================= -->
+            <div class="feature-item">
 
-    <button
-        id="screenButton"
-    >
-        Screen Resumes
-    </button>
+                <div class="feature-icon">
+                    ◈
+                </div>
 
+                <div>
+                    <strong>
+                        RAG Enabled
+                    </strong>
 
-    <!-- ========================================= -->
-    <!-- RESULTS -->
-    <!-- ========================================= -->
+                    <span>
+                        Context aware
+                    </span>
+                </div>
 
-    <div
-        id="results"
-        class="results-container"
-    ></div>
+            </div>
 
 
-</div>
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    ◉
+                </div>
+
+                <div>
+                    <strong>
+                        Secure & Private
+                    </strong>
+
+                    <span>
+                        Your data is safe
+                    </span>
+                </div>
+
+            </div>
 
 
-<script src="screening.js"></script>
+            <div class="feature-item">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <strong>
+                        Fast Screening
+                    </strong>
+
+                    <span>
+                        Save recruitment time
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SELECTED JOB
+        ================================================== -->
+
+        <section class="job-section">
+
+            <div class="section-heading">
+
+                <span class="section-icon">
+                    💼
+                </span>
+
+                <h2 id="jobTitle">
+                    Loading Job...
+                </h2>
+
+            </div>
+
+
+            <div class="job-card">
+
+
+                <!-- JOB DESCRIPTION -->
+
+                <div class="job-description-area">
+
+                    <p id="jobDescription">
+                        Loading job description...
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="description-link"
+                    >
+                        View Full Description →
+                    </button>
+
+                </div>
+
+
+                <!-- KEY REQUIREMENTS -->
+
+                <div class="requirements-area">
+
+                    <h3>
+                        Key Requirements
+                    </h3>
+
+
+                    <div class="requirement-tags">
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            Machine Learning
+                        </span>
+
+                        <span>
+                            SQL
+                        </span>
+
+                        <span>
+                            Pandas
+                        </span>
+
+                        <span>
+                            NumPy
+                        </span>
+
+                        <span>
+                            Scikit-learn
+                        </span>
+
+                        <span>
+                            Flask / Django
+                        </span>
+
+                        <span>
+                            REST APIs
+                        </span>
+
+                        <span>
+                            Git
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             UPLOAD RESUMES
+        ================================================== -->
+
+        <section class="upload-section">
+
+            <div class="section-heading">
+
+                <span class="section-icon">
+                    ⇧
+                </span>
+
+                <h2>
+                    Upload Candidate Resumes
+                </h2>
+
+            </div>
+
+
+            <div class="resume-upload-box">
+
+
+                <div class="upload-visual">
+
+                    <div class="upload-cloud">
+                        ☁
+                    </div>
+
+                </div>
+
+
+                <div class="upload-main">
+
+                    <strong>
+                        Drag & drop resumes here
+                    </strong>
+
+                    <span>
+                        or click to browse files
+                    </span>
+
+
+                    <label
+                        for="resumeFiles"
+                        class="choose-files-button"
+                    >
+                        Choose Files
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="resumeFiles"
+                        accept=".pdf"
+                        multiple
+                    >
+                    <p id="fileCount" class="upload-file-count">
+    No resumes selected
+</p>
+
+                </div>
+
+
+                <div class="upload-info">
+
+                    <div>
+                        ✓ Supported Formats
+                    </div>
+
+                    <div>
+                        ▣ PDF · DOCX · TXT
+                    </div>
+
+                    <div>
+                        ▱ Max file size: 20MB per file
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SCREEN BUTTON
+        ================================================== -->
+
+        <div class="screen-action">
+
+            <button
+                id="screenButton"
+                class="screen-button"
+            >
+                ✨ Screen Resumes
+            </button>
+
+            <p>
+                AI will analyze and rank the candidates
+                for this job.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             RESULTS
+        ================================================== -->
+
+        <section
+            id="results"
+            class="results-container"
+        ></section>
+
+
+    </main>
+
+
+    <script src="screening.js"></script>
 
 </body>
 
